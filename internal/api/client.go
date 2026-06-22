@@ -62,6 +62,16 @@ func (c *Client) Do(method, endpoint string, queryParams map[string]string, head
 	if c.auth.Token != "" {
 		req.Header.Set("Authorization", c.auth.TokenType+" "+c.auth.Token)
 	}
+	// Cookie-based auth (browser session)
+	if c.auth.Cookie != "" {
+		req.Header.Set("Cookie", c.auth.Cookie)
+	}
+	// CSRF token (required with cookie auth)
+	if c.auth.CSRFToken != "" {
+		req.Header.Set("csrf-token-open-li-bing", c.auth.CSRFToken)
+		req.Header.Set("Referer", "https://www.openlibing.com/ops/dashboard/open-source-project")
+		req.Header.Set("Origin", "https://www.openlibing.com")
+	}
 
 	// Retry loop
 	var lastErr error

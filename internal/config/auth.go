@@ -14,9 +14,12 @@ type Auth struct {
 }
 
 // OpenLibingAuth holds OpenLibing platform credentials.
+// Supports both Bearer token and browser cookie-based auth.
 type OpenLibingAuth struct {
-	Token     string `yaml:"token"`
-	TokenType string `yaml:"token_type"` // Bearer
+	Token     string `yaml:"token"`      // Bearer token (or JWT from cookie)
+	TokenType string `yaml:"token_type"` // Bearer (default)
+	Cookie    string `yaml:"cookie"`     // Full browser cookie string
+	CSRFToken string `yaml:"csrf_token"` // CSRF token header value
 }
 
 // LLMAuth holds LLM API credentials.
