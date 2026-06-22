@@ -99,12 +99,27 @@ func (e *Engine) call(resolved *ResolvedRequest) ([]byte, error) {
 func extract(def *spc.SPCDefinition, rawJSON []byte) ([]map[string]interface{}, error) {
 	jsonStr := string(rawJSON)
 
-	// Determine if response wraps data in a "data" array
-	dataResult := gjson.Get(jsonStr, "data")
+	// Determine the array of items to extract fields from.
+	// Supports common API response patterns:
+	//   {"data": [...]}
+	//   {"data": {"records": [...]}}
+	//   [...]  (root-level array)
+	//   {...}  (single object)
 	var arr []gjson.Result
+
+	dataResult := gjson.Get(jsonStr, "data")
 	if dataResult.IsArray() {
+		// Pattern 1: data is an array
 		arr = dataResult.Array()
-	} else {
+	} else if dataResult.IsObject() {
+		// Pattern 2: data is an object — check for nested records array
+		recordsResult := dataResult.Get("records")
+		if recordsResult.IsArray() {
+			arr = recordsResult.Array()
+		}
+	}
+
+	if len(arr) == 0 {
 		// Try root-level array
 		rootResult := gjson.Parse(jsonStr)
 		if rootResult.IsArray() {

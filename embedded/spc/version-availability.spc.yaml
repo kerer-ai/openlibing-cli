@@ -1,0 +1,125 @@
+name: version-availability
+version: "1.0"
+description: >
+  Query nightly pipeline version availability metrics for a project.
+  Returns success rates, duration percentiles, and case pass rates per pipeline.
+type: query
+category: ops
+tags: [version, availability, nightly, metrics]
+
+parameters:
+  - name: project_id
+    type: integer
+    required: true
+    description: GitCode project identifier (e.g. 300036)
+
+  - name: start_date
+    type: string
+    required: true
+    description: Start date in YYYY-MM-DD format
+
+  - name: end_date
+    type: string
+    required: true
+    description: End date in YYYY-MM-DD format
+
+  - name: category
+    type: string
+    default: "nightly-dashboard"
+    description: Dashboard category
+
+  - name: open_source
+    type: string
+    default: "lead"
+    description: Open source filter
+
+  - name: is_all_day
+    type: string
+    default: "0"
+    description: All-day filter (0 or 1)
+
+  - name: sort_field
+    type: string
+    default: "pipelineRunCount"
+    description: Sort field
+
+  - name: sort_rule
+    type: string
+    default: "desc"
+    enum: [asc, desc]
+    description: Sort direction
+
+  - name: page
+    type: integer
+    default: 1
+    description: Page number
+
+  - name: page_size
+    type: integer
+    default: 10
+    description: Results per page
+    validation:
+      min: 1
+      max: 100
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-ops/manage/common/detail
+  headers:
+    Content-Type: application/json
+  body: |
+    {"category":"{{.category}}","openSource":"{{.open_source}}","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","isAllDay":"{{.is_all_day}}","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
+
+output:
+  format: table
+  fields:
+    - name: pipeline_name
+      header: "Pipeline"
+      path: "pipelineName"
+      width: 35
+    - name: run_count
+      header: "Runs"
+      path: "pipelineRunCount"
+    - name: success_rate
+      header: "Success%"
+      path: "pipelineSuccessRate"
+    - name: version_avail
+      header: "VersionAvail%"
+      path: "versionAvailabilityRate"
+    - name: build_success
+      header: "Build%"
+      path: "buildSuccessRate"
+    - name: test_success
+      header: "Test%"
+      path: "testSuccessRate"
+    - name: freq_per_day
+      header: "Freq/Day"
+      path: "runFrequencyPerDay"
+    - name: dur_avg_min
+      header: "DurAvg(m)"
+      path: "actualDurationAvgMinutes"
+      transform: truncate:8
+
+ai:
+  prompt_hint: >
+    Use this when users ask about version availability, nightly pipeline
+    metrics, or success rates for a project over a date range.
+  natural_language:
+    - "show version availability for project 300036"
+    - "nightly pipeline metrics from June 1 to June 22"
+    - "what's the success rate of nightly builds"
+
+examples:
+  - command: |
+      openlibing run version-availability \
+        --project-id 300036 \
+        --start-date 2026-06-01 \
+        --end-date 2026-06-22
+    description: Query version availability for June 2026
+  - command: |
+      openlibing run version-availability \
+        --project-id 300036 \
+        --start-date 2026-06-01 \
+        --end-date 2026-06-22 \
+        --output json
+    description: Output as JSON for further processing

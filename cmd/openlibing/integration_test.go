@@ -63,7 +63,7 @@ func TestIntegration_FullPipeline(t *testing.T) {
 		if code != 0 {
 			t.Fatalf("exit %d", code)
 		}
-		for _, name := range []string{"pipeline-list", "pipeline-detail", "pipeline-logs"} {
+		for _, name := range []string{"pipeline-list", "pipeline-detail", "pipeline-logs", "version-availability"} {
 			if !strings.Contains(out, name) {
 				t.Errorf("list output missing SPC %q\n%s", name, out)
 			}
@@ -79,8 +79,8 @@ func TestIntegration_FullPipeline(t *testing.T) {
 		if err := json.Unmarshal([]byte(out), &rows); err != nil {
 			t.Fatalf("invalid JSON: %v\n%s", err, out)
 		}
-		if len(rows) != 3 {
-			t.Errorf("expected 3 SPCs, got %d", len(rows))
+		if len(rows) < 3 {
+			t.Errorf("expected at least 3 SPCs, got %d", len(rows))
 		}
 		for _, r := range rows {
 			if r["origin"] != "builtin" {
@@ -443,4 +443,89 @@ output:
 	})
 
 	_ = home
+}
+
+// ============================================================================
+// Version Availability — POST with JSON body, data.records nesting
+// ============================================================================
+
+func TestIntegration_VersionAvailability(t *testing.T) {
+	server := testutil.NewMockOpenLibingServer(nil, "")
+	defer server.Close()
+
+	_, cleanup := testutil.SetupTestHome(t, server.URL)
+	defer cleanup()
+
+	bin := buildBinary(t)
+
+	t.Run("inspect", func(t *testing.T) {
+		out, code := runCLI(t, bin, "inspect", "version-availability")
+		if code != 0 {
+			t.Fatalf("exit %d\n%s", code, out)
+		}
+		for _, c := range []string{
+			"version-availability", "ops", "POST",
+			"--project-id", "required",
+			"--start-date", "required",
+			"--end-date", "required",
+			"VersionAvail%", "Build%", "Test%",
+		} {
+			if !strings.Contains(out, c) {
+				t.Errorf("inspect missing %q\n%s", c, out)
+			}
+		}
+	})
+
+	t.Run("run_table", func(t *testing.T) {
+		out, code := runCLI(t, bin, "run", "version-availability",
+			"--project-id", "300036",
+			"--start-date", "2026-06-01",
+			"--end-date", "2026-06-22")
+		if code != 0 {
+			t.Fatalf("exit %d\n%s", code, out)
+		}
+		for _, name := range []string{"MindIE-Motor", "ATB-Models", "MindIE-LLM"} {
+			if !strings.Contains(out, name) {
+				t.Errorf("output missing pipeline %q\n%s", name, out)
+			}
+		}
+	})
+
+	t.Run("run_json", func(t *testing.T) {
+		out, code := runCLI(t, bin, "run", "version-availability",
+			"--project-id", "300036",
+			"--start-date", "2026-06-01",
+			"--end-date", "2026-06-22",
+			"--output", "json")
+		if code != 0 {
+			t.Fatalf("exit %d\n%s", code, out)
+		}
+		var rows []map[string]interface{}
+		if err := json.Unmarshal([]byte(out), &rows); err != nil {
+			t.Fatalf("invalid JSON: %v\n%s", err, out)
+		}
+		if len(rows) < 3 {
+			t.Errorf("expected at least 3 records, got %d", len(rows))
+		}
+		if _, ok := rows[0]["version_avail"]; !ok {
+			t.Error("missing version_avail — data.records extraction may have failed")
+		}
+	})
+
+	t.Run("missing_start_date", func(t *testing.T) {
+		_, code := runCLI(t, bin, "run", "version-availability", "--project-id", "123")
+		if code == 0 {
+			t.Fatal("expected non-zero exit for missing start_date")
+		}
+	})
+
+	t.Run("list_ops_category", func(t *testing.T) {
+		out, code := runCLI(t, bin, "list", "--category", "ops")
+		if code != 0 {
+			t.Fatalf("exit %d\n%s", code, out)
+		}
+		if !strings.Contains(out, "version-availability") {
+			t.Errorf("ops category missing version-availability\n%s", out)
+		}
+	})
 }

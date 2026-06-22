@@ -80,7 +80,11 @@ For custom SPCs with unknown flags, pass them after a -- separator:
 	cmd.Flags().String("job-run-id", "", "Job run ID")
 	cmd.Flags().String("step-run-id", "", "Step run ID")
 	cmd.Flags().String("status", "", "Filter by status")
+	cmd.Flags().String("start-date", "", "Start date (YYYY-MM-DD)")
+	cmd.Flags().String("end-date", "", "End date (YYYY-MM-DD)")
 	cmd.Flags().Int("limit", 0, "Max results")
+	cmd.Flags().Int("page", 0, "Page number")
+	cmd.Flags().Int("page-size", 0, "Results per page")
 	// --param key=value for custom SPC parameters
 	cmd.Flags().StringArrayP("param", "p", nil, "Pass custom parameter as key=value (can be repeated)")
 
