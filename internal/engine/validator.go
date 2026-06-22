@@ -23,11 +23,6 @@ func Validate(def *spc.SPCDefinition, params map[string]interface{}) error {
 
 		// Skip further checks if no value and not required
 		if !exists || val == nil || val == "" {
-			// Apply default if available
-			if p.Default != nil && exists {
-				// User explicitly passed empty → use default
-				// This covers the case where value is provided but empty
-			}
 			continue
 		}
 

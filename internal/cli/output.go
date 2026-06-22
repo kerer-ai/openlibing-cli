@@ -8,6 +8,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/openlibing/openlibing-cli/pkg/spc"
+	"gopkg.in/yaml.v3"
 )
 
 // FormatResult formats a Result according to its Format field.
@@ -15,6 +16,8 @@ func FormatResult(result *spc.Result) (string, error) {
 	switch result.Format {
 	case "json":
 		return FormatJSON(result.Rows)
+	case "yaml":
+		return FormatYAML(result.Rows)
 	case "table":
 		return FormatTable(result.Rows, nil), nil
 	case "raw":
@@ -78,6 +81,18 @@ func FormatJSON(rows []map[string]interface{}) (string, error) {
 	data, err := json.MarshalIndent(rows, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("json marshal: %w", err)
+	}
+	return string(data), nil
+}
+
+// FormatYAML renders rows as YAML.
+func FormatYAML(rows []map[string]interface{}) (string, error) {
+	if rows == nil {
+		rows = []map[string]interface{}{}
+	}
+	data, err := yaml.Marshal(rows)
+	if err != nil {
+		return "", fmt.Errorf("yaml marshal: %w", err)
 	}
 	return string(data), nil
 }

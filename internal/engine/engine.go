@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/openlibing/openlibing-cli/internal/api"
 	"github.com/openlibing/openlibing-cli/pkg/spc"
@@ -76,12 +77,16 @@ func (e *Engine) Execute(name string, params map[string]interface{}) (*spc.Resul
 }
 
 func (e *Engine) call(resolved *ResolvedRequest) ([]byte, error) {
+	var body io.Reader
+	if resolved.Body != "" {
+		body = strings.NewReader(resolved.Body)
+	}
 	resp, err := e.client.Do(
 		resolved.Method,
 		resolved.Endpoint,
 		resolved.QueryParams,
 		resolved.Headers,
-		nil, // body handled via query params for now
+		body,
 	)
 	if err != nil {
 		return nil, err
