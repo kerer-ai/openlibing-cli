@@ -1,0 +1,71 @@
+name: project-list
+version: "1.0"
+description: >
+  Discover all projects with nightly pipeline data.
+  Lists every project ID and pipeline name available on the platform.
+type: query
+category: ops
+tags: [project, discover, list]
+
+parameters:
+  - name: start_date
+    type: string
+    required: false
+    default: ""
+    description: Filter by start date (YYYY-MM-DD, defaults to last 30 days)
+
+  - name: end_date
+    type: string
+    required: false
+    default: ""
+    description: Filter by end date (YYYY-MM-DD, defaults to today)
+
+  - name: page_size
+    type: integer
+    default: 100
+    description: Results per page
+    validation:
+      min: 1
+      max: 100
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-ops/manage/common/detail
+  headers:
+    Content-Type: application/json
+  body: |
+    {"category":"nightly-dashboard","openSource":"lead","isAllDay":"0","sortField":"pipelineRunCount","sortRule":"desc","page":1,"pageSize":{{.page_size}}{{if .start_date}},"startDate":"{{.start_date}}"{{end}}{{if .end_date}},"endDate":"{{.end_date}}"{{end}}}
+
+output:
+  format: table
+  fields:
+    - name: project_id
+      header: "ProjectID"
+      path: "projectId"
+    - name: pipeline_name
+      header: "Pipeline"
+      path: "pipelineName"
+      width: 40
+    - name: run_count
+      header: "Runs"
+      path: "pipelineRunCount"
+    - name: version_avail
+      header: "Avail%"
+      path: "versionAvailabilityRate"
+
+ai:
+  prompt_hint: >
+    Use to discover available projects and their pipeline names.
+    First step before querying specific project metrics.
+  natural_language:
+    - "list all projects"
+    - "what projects are available"
+    - "show me all nightly pipelines"
+
+examples:
+  - command: |
+      openlibing run project-list
+    description: List all projects and pipelines
+  - command: |
+      openlibing run project-list --output json | jq 'unique_by(.project_id) | .[].project_id'
+    description: Get unique project IDs only

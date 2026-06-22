@@ -1,8 +1,8 @@
 name: version-availability
 version: "1.0"
 description: >
-  Query nightly pipeline version availability metrics for a project.
-  Returns success rates, duration percentiles, and case pass rates per pipeline.
+  Query nightly pipeline version availability metrics.
+  Omit --project-id to query all projects.
 type: query
 category: ops
 tags: [version, availability, nightly, metrics]
@@ -10,8 +10,9 @@ tags: [version, availability, nightly, metrics]
 parameters:
   - name: project_id
     type: integer
-    required: true
-    description: GitCode project identifier (e.g. 300036)
+    required: false
+    default: ""
+    description: GitCode project ID (omit to query all projects)
 
   - name: start_date
     type: string
@@ -36,7 +37,7 @@ parameters:
   - name: is_all_day
     type: string
     default: "0"
-    description: All-day filter (0 or 1)
+    description: All-day filter
 
   - name: sort_field
     type: string
@@ -68,7 +69,7 @@ source:
   headers:
     Content-Type: application/json
   body: |
-    {"category":"{{.category}}","openSource":"{{.open_source}}","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","isAllDay":"{{.is_all_day}}","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
+    {"category":"{{.category}}","openSource":"{{.open_source}}","startDate":"{{.start_date}}","endDate":"{{.end_date}}","isAllDay":"{{.is_all_day}}","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}{{if .project_id}},"projectId":{{.project_id}}{{end}}}
 
 output:
   format: table
@@ -102,24 +103,29 @@ output:
 
 ai:
   prompt_hint: >
-    Use this when users ask about version availability, nightly pipeline
-    metrics, or success rates for a project over a date range.
+    Use when users ask about version availability or nightly pipeline metrics.
+    Omit project_id to query all projects across a date range.
   natural_language:
-    - "show version availability for project 300036"
-    - "nightly pipeline metrics from June 1 to June 22"
-    - "what's the success rate of nightly builds"
+    - "show version availability for all projects this week"
+    - "nightly pipeline metrics for project 300036"
+    - "what's the version availability trend for MindIE-LLM"
 
 examples:
+  - command: |
+      openlibing run version-availability \
+        --start-date 2026-06-01 \
+        --end-date 2026-06-22
+    description: Query all projects for June 2026
   - command: |
       openlibing run version-availability \
         --project-id 300036 \
         --start-date 2026-06-01 \
         --end-date 2026-06-22
-    description: Query version availability for June 2026
+    description: Query project 300036 only
   - command: |
       openlibing run version-availability \
         --project-id 300036 \
         --start-date 2026-06-01 \
-        --end-date 2026-06-22 \
+        --end-date 2026-06-07 \
         --output json
-    description: Output as JSON for further processing
+    description: Single week for trend analysis
