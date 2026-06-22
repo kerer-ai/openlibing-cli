@@ -1,0 +1,77 @@
+name: pipeline-list
+version: "1.0"
+description: >
+  Query pipeline runs for a GitCode project.
+  Returns status, branch, duration, and trigger info.
+type: query
+category: pipeline
+tags: [ci, status, list]
+
+parameters:
+  - name: project_id
+    type: string
+    required: true
+    description: GitCode project identifier
+
+  - name: limit
+    type: integer
+    default: 10
+    description: Max number of results to return
+    validation:
+      min: 1
+      max: 100
+
+  - name: status
+    type: string
+    enum: [running, success, failed, pending]
+    description: Filter by pipeline status
+
+source:
+  method: GET
+  endpoint: gateway/openlibing-cicd/project/pipeline/pipeline-run/detail
+  query_params:
+    projectId: "{{.project_id}}"
+    pageSize: "{{.limit}}"
+  headers:
+    Content-Type: application/json
+
+output:
+  format: table
+  fields:
+    - name: id
+      header: "ID"
+      path: "pipelineRunId"
+      width: 36
+    - name: status
+      header: "Status"
+      path: "status"
+      transform: upper
+    - name: branch
+      header: "Branch"
+      path: "ref"
+    - name: duration_ms
+      header: "Duration"
+      path: "durationMillis"
+      transform: duration
+    - name: created
+      header: "Created"
+      path: "createTime"
+
+ai:
+  prompt_hint: >
+    Use this when users ask about pipeline runs, CI status, or build history
+    for a specific project.
+  natural_language:
+    - "show pipelines for project 123"
+    - "list recent builds"
+    - "what's the CI status of project X"
+  result_hint: >
+    Focus on status and duration. If there are failures, highlight them first.
+
+examples:
+  - command: |
+      openlibing run pipeline-list --project-id 123
+    description: List last 10 pipelines for project 123
+  - command: |
+      openlibing run pipeline-list --project-id 123 --status failed --limit 5
+    description: Show 5 most recent failures

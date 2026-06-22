@@ -1,0 +1,58 @@
+name: pipeline-logs
+version: "1.0"
+description: >
+  Fetch execution logs for a specific job step within a pipeline run.
+  Requires project ID, pipeline run ID, job run ID, and step run ID.
+type: query
+category: pipeline
+tags: [ci, logs, debug]
+
+parameters:
+  - name: project_id
+    type: string
+    required: true
+    description: GitCode project identifier
+  - name: pipeline_run_id
+    type: string
+    required: true
+    description: Pipeline run ID
+  - name: job_run_id
+    type: string
+    required: true
+    description: Job run ID
+  - name: step_run_id
+    type: string
+    required: true
+    description: Step run ID
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-cicd/project/pipeline/exec-log
+  query_params:
+    projectId: "{{.project_id}}"
+    pipelineRunId: "{{.pipeline_run_id}}"
+    jobRunId: "{{.job_run_id}}"
+    stepRunId: "{{.step_run_id}}"
+  headers:
+    Content-Type: application/json
+
+output:
+  format: raw
+
+ai:
+  prompt_hint: >
+    Use this when users need to see raw execution logs for debugging
+    a failed job or step.
+  natural_language:
+    - "show me the logs for the failed step"
+    - "get execution logs for job X"
+    - "what happened in step Y"
+
+examples:
+  - command: |
+      openlibing run pipeline-logs \
+        --project-id 123 \
+        --pipeline-run-id run-abc \
+        --job-run-id job-1 \
+        --step-run-id step-a
+    description: Fetch execution logs for a specific step

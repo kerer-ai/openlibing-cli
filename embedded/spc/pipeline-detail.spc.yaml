@@ -1,0 +1,56 @@
+name: pipeline-detail
+version: "1.0"
+description: >
+  Get detailed information about a specific pipeline run,
+  including all stages and jobs with their status and duration.
+type: query
+category: pipeline
+tags: [ci, detail, stages]
+
+parameters:
+  - name: run_id
+    type: string
+    required: true
+    description: Pipeline run ID (pipelineRunId)
+
+source:
+  method: GET
+  endpoint: gateway/openlibing-cicd/project/pipeline/pipeline-run/detail
+  query_params:
+    pipelineRunId: "{{.run_id}}"
+  headers:
+    Content-Type: application/json
+
+output:
+  format: json
+  fields:
+    - name: id
+      header: "Pipeline ID"
+      path: "pipelineRunId"
+    - name: status
+      header: "Status"
+      path: "status"
+    - name: branch
+      header: "Branch"
+      path: "ref"
+    - name: duration_ms
+      header: "Duration"
+      path: "durationMillis"
+      transform: duration
+    - name: stages_count
+      header: "Stages"
+      path: "stages.#"
+
+ai:
+  prompt_hint: >
+    Use this when users ask for details about a specific pipeline run,
+    want to see stages and jobs, or need to understand why a build failed.
+  natural_language:
+    - "show details of pipeline run abc-123"
+    - "what stages are in the latest build"
+    - "why did pipeline X fail"
+
+examples:
+  - command: |
+      openlibing run pipeline-detail --run-id abc-def-123
+    description: Show full detail of a pipeline run

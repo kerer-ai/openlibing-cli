@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/fs"
+
+	embedded "github.com/openlibing/openlibing-cli/embedded"
+)
 
 func main() {
-	fmt.Println("openlibing-cli")
+	entries, _ := fs.ReadDir(embedded.SPCs, "spc")
+	for _, e := range entries {
+		fmt.Println(e.Name())
+	}
 }
