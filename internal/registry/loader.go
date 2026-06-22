@@ -28,9 +28,9 @@ func LoadFromEmbed(embedFS fs.FS, dir string) ([]*spc.SPCDefinition, error) {
 		if err != nil {
 			continue
 		}
-		defer f.Close()
 
 		def, err := engine.ParseSPC(f)
+		f.Close()
 		if err != nil {
 			continue // skip malformed SPCs
 		}

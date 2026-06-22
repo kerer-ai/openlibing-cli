@@ -45,7 +45,7 @@ func ResolveSearch(query string, defs []*spc.SPCDefinition) []*spc.SPCDefinition
 			}
 		}
 
-		// Also check individual words in query against name/desc
+		// Also check individual words in query against tags
 		words := strings.Fields(query)
 		for _, word := range words {
 			if len(word) < 3 {
