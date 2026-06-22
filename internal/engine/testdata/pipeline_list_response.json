@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "pipelineRunId": "run-abc-123",
+      "status": "SUCCESS",
+      "ref": "main",
+      "durationMillis": 125000,
+      "createTime": "2026-06-22T10:30:00Z"
+    },
+    {
+      "pipelineRunId": "run-def-456",
+      "status": "FAILED",
+      "ref": "feat/new-thing",
+      "durationMillis": 380000,
+      "createTime": "2026-06-22T09:15:00Z"
+    }
+  ]
+}
