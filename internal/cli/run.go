@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/openlibing/openlibing-cli/internal/engine"
 	"github.com/spf13/cobra"
@@ -24,7 +25,8 @@ func newRunCmd(eng *engine.Engine) *cobra.Command {
 				if f.Name == "output" {
 					return // skip global flags
 				}
-				params[f.Name] = f.Value.String()
+				paramName := strings.ReplaceAll(f.Name, "-", "_")
+				params[paramName] = f.Value.String()
 			})
 
 			result, err := eng.Execute(spcName, params)
