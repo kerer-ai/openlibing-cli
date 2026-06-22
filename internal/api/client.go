@@ -49,12 +49,16 @@ func (c *Client) Do(method, endpoint string, queryParams map[string]string, head
 		req.URL.RawQuery = q.Encode()
 	}
 
-	// Set headers from SPC
+	// Default headers to avoid WAF blocks
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; openlibing-cli)")
+	req.Header.Set("Accept", "application/json, text/plain, */*")
+
+	// Set headers from SPC (may override defaults)
 	for k, v := range headers {
 		req.Header.Set(k, v)
 	}
 
-	// Inject auth
+	// Inject auth if configured
 	if c.auth.Token != "" {
 		req.Header.Set("Authorization", c.auth.TokenType+" "+c.auth.Token)
 	}

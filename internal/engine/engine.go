@@ -93,7 +93,21 @@ func (e *Engine) call(resolved *ResolvedRequest) ([]byte, error) {
 	}
 	defer resp.Body.Close()
 
-	return io.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("read response: %w", err)
+	}
+
+	// Surface HTTP errors with body context
+	if resp.StatusCode >= 400 {
+		summary := string(respBody)
+		if len(summary) > 200 {
+			summary = summary[:200] + "..."
+		}
+		return nil, fmt.Errorf("HTTP %d: %s", resp.StatusCode, summary)
+	}
+
+	return respBody, nil
 }
 
 func extract(def *spc.SPCDefinition, rawJSON []byte) ([]map[string]interface{}, error) {
