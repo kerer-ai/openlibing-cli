@@ -78,6 +78,9 @@ output:
       header: "Pipeline"
       path: "pipelineName"
       width: 35
+    - name: project_id
+      header: "ProjID"
+      path: "projectId"
     - name: run_count
       header: "Runs"
       path: "pipelineRunCount"
