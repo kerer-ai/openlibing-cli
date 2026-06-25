@@ -16,53 +16,53 @@
 
 ## 版本可用度变化趋势
 
-| 流水线 | 项目 | 所属产品 | 06-21(日) | 06-22(一) | 06-23(二) | 06-24(三) | 06-25(四) | 趋势 |
-|--------|------|----------|---|---|---|---|---|------|
-| Nightly-CI_ATB-Models | MindIE | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_AgentSDK | MindCluster | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_DrivingSDK_master | MindSpeed | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_IndexSDK | MindCluster | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_MindCluster | MindCluster | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_MindIE-LLM | MindIE | Ascend | **100%** | **100%** | <span style="color:red">0%</span> | **100%** | **100%** | 🟡 波动(有100%) |
-| Nightly-CI_MindIE-Motor | MindIE | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 📈 新达标 |
-| Nightly-CI_MindIE-SD | MindIE | Ascend | **100%** | **100%** | **100%** | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 📉 已丢失 |
-| Nightly-CI_MindSpeed-LLM_master | MindSpeed | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | 📈 新达标 |
-| Nightly-CI_MindSpeed-MM_master | MindSpeed | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | 📈 新达标 |
-| Nightly-CI_MindSpeed-RL_master | MindSpeed | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_ModelZoo_master | MindSpeed | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_MultimodalSDK | MindCluster | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_RAGSDK | MindCluster | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_RecSDK | MindCluster | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_VisionSDK | MindCluster | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
-| Nightly-CI_ascend-deployer | MindCluster | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_ops-cv | Ascend-CANN | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_ops-math | Ascend-CANN | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_ops-transformer | Ascend-CANN | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
-| Nightly-CI_pytorch_master_build | FrameworkPTAdapter | Ascend | **100%** | <span style="color:red">0%</span> | **100%** | **100%** | <span style="color:red">0%</span> | 📉 已丢失 |
-| Nightly-CI_CANN_duo_os_A2 | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_CANN_duo_os_A3 | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_CodeQL-scan_MindIE_dev | MindIE | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_MindSpeed_master | MindSpeed | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_Mindformers | MindSpore | MindSpore | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_atb | Ascend-CANN | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_catlass | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_hccl-uat | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | - | - | - | 🔴 持续0% |
-| Nightly-CI_hccl_hcomm | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_msmemscope | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_msmodelslim | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_msot | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_msprobe | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | - | 🔴 持续0% |
-| Nightly-CI_msprof | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_msserviceprofiler | MindStudio | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_ops-nn | Ascend-CANN | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_shmem | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_sip | Ascend-CANN | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
-| Nightly-CI_CANN_duo_os | Ascend-CANN | CANN | - | - | - | - | - | ⚪ 无数据 |
-| Nightly-CI_Triton | Ascend-CANN | CANN | - | - | - | - | - | ⚪ 无数据 |
+| 项目 | 流水线 | 所属产品 | 06-21(日) | 06-22(一) | 06-23(二) | 06-24(三) | 06-25(四) | 趋势 |
+|------|--------|----------|---|---|---|---|---|------|
+| Ascend-CANN | Nightly-CI_CANN_duo_os | CANN | - | - | - | - | - | ⚪ 无数据 |
+| Ascend-CANN | Nightly-CI_CANN_duo_os_A2 | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_CANN_duo_os_A3 | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_Triton | CANN | - | - | - | - | - | ⚪ 无数据 |
+| Ascend-CANN | Nightly-CI_atb | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_catlass | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_hccl-uat | CANN | - | <span style="color:red">0%</span> | - | - | - | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_hccl_hcomm | CANN | - | <span style="color:red">0%</span> | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_ops-cv | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
+| Ascend-CANN | Nightly-CI_ops-math | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
+| Ascend-CANN | Nightly-CI_ops-nn | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_ops-transformer | CANN | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | 📈 新达标 |
+| Ascend-CANN | Nightly-CI_shmem | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| Ascend-CANN | Nightly-CI_sip | CANN | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| FrameworkPTAdapter | Nightly-CI_pytorch_master_build | Ascend | **100%** | <span style="color:red">0%</span> | **100%** | **100%** | <span style="color:red">0%</span> | 📉 已丢失 |
+| MindCluster | Nightly-CI_AgentSDK | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindCluster | Nightly-CI_IndexSDK | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindCluster | Nightly-CI_MindCluster | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindCluster | Nightly-CI_MultimodalSDK | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
+| MindCluster | Nightly-CI_RAGSDK | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | 📈 新达标 |
+| MindCluster | Nightly-CI_RecSDK | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
+| MindCluster | Nightly-CI_VisionSDK | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindCluster | Nightly-CI_ascend-deployer | Ascend | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
+| MindIE | Nightly-CI_ATB-Models | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindIE | Nightly-CI_CodeQL-scan_MindIE_dev | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindIE | Nightly-CI_MindIE-LLM | Ascend | **100%** | **100%** | <span style="color:red">0%</span> | **100%** | **100%** | 🟡 波动(有100%) |
+| MindIE | Nightly-CI_MindIE-Motor | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 📈 新达标 |
+| MindIE | Nightly-CI_MindIE-SD | Ascend | **100%** | **100%** | **100%** | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 📉 已丢失 |
+| MindSpeed | Nightly-CI_DrivingSDK_master | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindSpeed | Nightly-CI_MindSpeed-LLM_master | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | 📈 新达标 |
+| MindSpeed | Nightly-CI_MindSpeed-MM_master | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | 📈 新达标 |
+| MindSpeed | Nightly-CI_MindSpeed-RL_master | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindSpeed | Nightly-CI_MindSpeed_master | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindSpeed | Nightly-CI_ModelZoo_master | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
+| MindSpore | Nightly-CI_Mindformers | MindSpore | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindStudio | Nightly-CI_msmemscope | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindStudio | Nightly-CI_msmodelslim | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindStudio | Nightly-CI_msot | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindStudio | Nightly-CI_msprobe | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | - | 🔴 持续0% |
+| MindStudio | Nightly-CI_msprof | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
+| MindStudio | Nightly-CI_msserviceprofiler | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
 
 
 
 ---
 
-> 生成时间: 2026-06-25 16:11:46 | 数据源: openlibing-ops API
+> 生成时间: 2026-06-25 16:14:10 | 数据源: openlibing-ops API
 > 后续: `python3 scripts/update-va-tracking.py` 拉取昨日数据，重新生成此报告
