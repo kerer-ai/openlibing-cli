@@ -2,6 +2,24 @@
 
 > 统计周期: 2026-06-21 (周日) ~ 2026-06-24 (周三) | 共 79 条流水线
 
+## 按项目汇总
+
+| 项目 | 所属产品 | 流水线数 | 6.21(日) | 6.22(一) | 6.23(二) | 6.24(三) | 持续达标 | 趋势 |
+|------|----------|----------|----------|----------|----------|----------|----------|------|
+| [openUBMC](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=2) | openUBMC | 1 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [openLiBing](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=3) | openLiBing | 15 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [FrameworkPTAdapter](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=4) | Ascend | 1 | 1 | 0 | 1 | 1 | 0 | ➡️ 持平 |
+| [MindSpore](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300030) | MindSpore | 1 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [MindIE](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300036) | Ascend | 5 | 3 | 3 | 3 | 2 | 1 | 📉 下降 |
+| [MindStudio](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300037) | Ascend | 6 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [MindCluster](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300038) | Ascend | 8 | 4 | 7 | 8 | 8 | 4 | 📈 上升 |
+| [Ascend-CANN](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300057) | CANN | 14 | 0 | 0 | 0 | 3 | 0 | 📈 上升 |
+| [boostkit](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300059) | Kunpeng | 15 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [HPCKit](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300073) | Kunpeng | 5 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [Triton](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300077) | Ascend | 1 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [LQ_FrameworkPTAdapter](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300088) | LingQu | 1 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [MindSpeed](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300091) | Ascend | 6 | 3 | 3 | 3 | 3 | 3 | ➡️ 持平 |
+
 ## 版本可用度变化趋势
 
 | 流水线 | 项目 | 所属产品 | 6.21(日) | 6.22(一) | 6.23(二) | 6.24(三) | 趋势 |
@@ -86,37 +104,9 @@
 | Nightly-CI_Triton (p300057) | Ascend-CANN | CANN | - | - | - | - | ⚪ 无数据 |
 | Nightly-CI_Triton (p300077) | Triton | Ascend | - | - | - | - | ⚪ 无数据 |
 
-## 按产品汇总
 
-| 所属产品 | 流水线数 | 6.21(日) | 6.22(一) | 6.23(二) | 6.24(三) | 持续达标 | 曾达标 | 趋势 |
-|----------|----------|----------|----------|----------|----------|----------|--------|------|
-| [Ascend](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300038) | 27 | 11 | 13 | 15 | 14 | 8 | 16 | 📈 上升 |
-| [CANN](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300057) | 14 | 0 | 0 | 0 | 3 | 0 | 3 | 📈 上升 |
-| [Kunpeng](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300059) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| [openLiBing](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=3) | 15 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| [MindSpore](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300030) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| [openUBMC](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=2) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| [LingQu](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300088) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-
-## 按项目汇总
-
-| 项目 | 所属产品 | 流水线数 | 4天均达标 | 最高达标/天 | 趋势 |
-|------|----------|----------|----------|------------|------|
-| openUBMC | openUBMC | 1 | 0 | 0 | 🔴 无达标 |
-| openLiBing | openLiBing | 15 | 0 | 0 | 🔴 无达标 |
-| FrameworkPTAdapter | Ascend | 1 | 0 | 1 | ➡️ 持平 |
-| MindSpore | MindSpore | 1 | 0 | 0 | 🔴 无达标 |
-| MindIE | Ascend | 5 | 1 | 3 | 📉 下降 |
-| MindStudio | Ascend | 6 | 0 | 0 | 🔴 无达标 |
-| MindCluster | Ascend | 8 | 4 | 8 | 📈 上升 |
-| Ascend-CANN | CANN | 14 | 0 | 3 | 📈 上升 |
-| boostkit | Kunpeng | 15 | 0 | 0 | 🔴 无达标 |
-| HPCKit | Kunpeng | 5 | 0 | 0 | 🔴 无达标 |
-| Triton | Ascend | 1 | 0 | 0 | 🔴 无达标 |
-| LQ_FrameworkPTAdapter | LingQu | 1 | 0 | 0 | 🔴 无达标 |
-| MindSpeed | Ascend | 6 | 3 | 3 | ➡️ 持平 |
 
 ---
 
-> 生成时间: 2026-06-25 16:05:36 | 数据源: openlibing-ops API
+> 生成时间: 2026-06-25 16:08:14 | 数据源: openlibing-ops API
 > 后续: `python3 scripts/update-va-tracking.py` 拉取昨日数据，重新生成此报告
