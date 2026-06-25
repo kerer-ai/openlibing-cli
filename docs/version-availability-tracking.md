@@ -64,5 +64,4 @@
 
 ---
 
-> 生成时间: 2026-06-25 16:14:28 | 数据源: openlibing-ops API
-> 后续: `python3 scripts/update-va-tracking.py` 拉取昨日数据，重新生成此报告
+> 生成时间: 2026-06-25 16:15:21 | 数据源: openlibing-ops API
