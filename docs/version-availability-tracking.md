@@ -90,13 +90,13 @@
 
 | 所属产品 | 流水线数 | 6.21(日) | 6.22(一) | 6.23(二) | 6.24(三) | 持续达标 | 曾达标 | 趋势 |
 |----------|----------|----------|----------|----------|----------|----------|--------|------|
-| Ascend | 27 | 11 | 13 | 15 | 14 | 8 | 16 | 📈 上升 |
-| CANN | 14 | 0 | 0 | 0 | 3 | 0 | 3 | 📈 上升 |
-| Kunpeng | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| openLiBing | 15 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| MindSpore | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| openUBMC | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
-| LingQu | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [Ascend](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300038) | 27 | 11 | 13 | 15 | 14 | 8 | 16 | 📈 上升 |
+| [CANN](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300057) | 14 | 0 | 0 | 0 | 3 | 0 | 3 | 📈 上升 |
+| [Kunpeng](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300059) | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [openLiBing](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=3) | 15 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [MindSpore](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300030) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [openUBMC](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=2) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| [LingQu](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300088) | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
 
 ## 按项目汇总
 
@@ -118,5 +118,5 @@
 
 ---
 
-> 生成时间: 2026-06-25 16:04:17 | 数据源: openlibing-ops API
+> 生成时间: 2026-06-25 16:05:36 | 数据源: openlibing-ops API
 > 后续: `python3 scripts/update-va-tracking.py` 拉取昨日数据，重新生成此报告
