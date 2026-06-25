@@ -86,39 +86,17 @@
 | Nightly-CI_Triton (p300057) | Ascend-CANN | CANN | - | - | - | - | ⚪ 无数据 |
 | Nightly-CI_Triton (p300077) | Triton | Ascend | - | - | - | - | ⚪ 无数据 |
 
-## 日间变化明细
+## 按产品汇总
 
-### 6.21→6.22 (06-21 → 06-22)
-
-**新达标 (3):**
-- 🟢 Nightly-CI_MultimodalSDK (MindCluster): 0% → **100%**
-- 🟢 Nightly-CI_RecSDK (MindCluster): 0% → **100%**
-- 🟢 Nightly-CI_ascend-deployer (MindCluster): 0% → **100%**
-
-**丢失 (1):**
-- 🔴 Nightly-CI_pytorch_master_build (FrameworkPTAdapter): 100% → **0%**
-
-### 6.22→6.23 (06-22 → 06-23)
-
-**新达标 (3):**
-- 🟢 Nightly-CI_MindIE-Motor (MindIE): 0% → **100%**
-- 🟢 Nightly-CI_RAGSDK (MindCluster): 0% → **100%**
-- 🟢 Nightly-CI_pytorch_master_build (FrameworkPTAdapter): 0% → **100%**
-
-**丢失 (1):**
-- 🔴 Nightly-CI_MindIE-LLM (MindIE): 100% → **0%**
-
-### 6.23→6.24 (06-23 → 06-24)
-
-**新达标 (4):**
-- 🟢 Nightly-CI_MindIE-LLM (MindIE): 0% → **100%**
-- 🟢 Nightly-CI_ops-cv (Ascend-CANN): 0% → **100%**
-- 🟢 Nightly-CI_ops-math (Ascend-CANN): 0% → **100%**
-- 🟢 Nightly-CI_ops-transformer (Ascend-CANN): 0% → **100%**
-
-**丢失 (2):**
-- 🔴 Nightly-CI_MindIE-Motor (MindIE): 100% → **0%**
-- 🔴 Nightly-CI_MindIE-SD (MindIE): 100% → **0%**
+| 所属产品 | 流水线数 | 6.21(日) | 6.22(一) | 6.23(二) | 6.24(三) | 持续达标 | 曾达标 | 趋势 |
+|----------|----------|----------|----------|----------|----------|----------|--------|------|
+| Ascend | 27 | 11 | 13 | 15 | 14 | 8 | 16 | 📈 上升 |
+| CANN | 14 | 0 | 0 | 0 | 3 | 0 | 3 | 📈 上升 |
+| Kunpeng | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| openLiBing | 15 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| MindSpore | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| openUBMC | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
+| LingQu | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 🔴 无达标 |
 
 ## 按项目汇总
 
@@ -140,5 +118,5 @@
 
 ---
 
-> 生成时间: 2026-06-25 15:55:52 | 数据源: openlibing-ops API
+> 生成时间: 2026-06-25 16:04:17 | 数据源: openlibing-ops API
 > 后续: `python3 scripts/update-va-tracking.py` 拉取昨日数据，重新生成此报告
