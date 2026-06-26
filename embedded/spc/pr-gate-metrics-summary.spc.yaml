@@ -1,0 +1,149 @@
+name: pr-gate-metrics-summary
+version: "1.0"
+description: >
+  Curated summary of PR gate (repo-pr-pipeline) metrics — 14 key fields
+  including E2E execution (P50/P90/avg), build task time (P50/P90/avg/queue),
+  test task time (P50/P90/avg/queue), and code check time (P90).
+type: query
+category: metrics
+tags: [pr, gate, metrics, summary, table]
+
+parameters:
+  - name: project_id
+    type: integer
+    required: true
+    description: GitCode project ID
+
+  - name: start_date
+    type: string
+    required: true
+    description: Start date in YYYY-MM-DD format
+
+  - name: end_date
+    type: string
+    required: true
+    description: End date in YYYY-MM-DD format
+
+  - name: sort_field
+    type: string
+    default: "total"
+    description: Sort field
+
+  - name: sort_rule
+    type: string
+    default: "desc"
+    enum: [asc, desc]
+    description: Sort direction
+
+  - name: page
+    type: integer
+    default: 1
+    description: Page number
+    validation:
+      min: 1
+
+  - name: page_size
+    type: integer
+    default: 10
+    description: Results per page
+    validation:
+      min: 1
+      max: 100
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-ops/common/detail
+  headers:
+    Content-Type: application/json
+  body: |
+    {"category":"repo-pr-pipeline","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","pipelineStatus":"","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
+
+output:
+  format: table
+  fields:
+    - name: repo
+      header: "Repo"
+      path: "repoName"
+      width: 16
+    - name: branch
+      header: "Branch"
+      path: "branchName"
+      width: 12
+    - name: e2e_p90
+      header: "E2E P90(min)"
+      path: "prE2eAvgTimeP90"
+      transform: truncate:8
+    - name: e2e_avg
+      header: "E2E Avg(min)"
+      path: "prE2eAvgTime"
+      transform: truncate:8
+    - name: e2e_p50
+      header: "E2E P50(min)"
+      path: "prE2eAvgTimeP50"
+      transform: truncate:8
+    - name: build_p50
+      header: "Build P50(min)"
+      path: "buildAvgTimeP50"
+      transform: truncate:8
+    - name: build_p90
+      header: "Build P90(min)"
+      path: "buildAvgTimeP90"
+      transform: truncate:8
+    - name: build_avg
+      header: "Build Avg(min)"
+      path: "buildAvgTime"
+      transform: truncate:8
+    - name: build_queue_p90
+      header: "BldQ P90(min)"
+      path: "buildAvgPendingTimeP90"
+      transform: truncate:8
+    - name: test_p90
+      header: "Test P90(min)"
+      path: "dtAvgTimeP90"
+      transform: truncate:8
+    - name: test_p50
+      header: "Test P50(min)"
+      path: "dtAvgTimeP50"
+      transform: truncate:8
+    - name: test_avg
+      header: "Test Avg(min)"
+      path: "dtAvgTime"
+      transform: truncate:8
+    - name: test_queue_p90
+      header: "TstQ P90(min)"
+      path: "dtAvgPendingTimeP90"
+      transform: truncate:8
+    - name: check_p90
+      header: "Chk P90(min)"
+      path: "checkAvgTimeP90"
+      transform: truncate:8
+
+ai:
+  prompt_hint: >
+    Use this when users want a curated summary of PR gate metrics —
+    key percentiles (P50, P90) and averages for E2E execution, build,
+    test, and code check tasks.
+  natural_language:
+    - "PR gate summary for project 4"
+    - "show me PR pipeline key metrics"
+    - "summary of PR E2E and build times"
+    - "PR门禁核心指标"
+  result_hint: >
+    Highlight repos with high E2E P90 times (> 60 min). Compare build vs
+    test vs code-check durations to identify bottlenecks.
+
+examples:
+  - command: |
+      openlibing run pr-gate-metrics-summary \
+        --project-id 4 \
+        --start-date 2026-06-01 \
+        --end-date 2026-06-26
+    description: Show curated PR gate metrics table for project 4
+  - command: |
+      openlibing run pr-gate-metrics-summary \
+        --project-id 4 \
+        --start-date 2026-05-27 \
+        --end-date 2026-06-26 \
+        --sort-field prE2eAvgTimeP90 \
+        --sort-rule desc
+    description: Sort by E2E P90 to find slowest repos

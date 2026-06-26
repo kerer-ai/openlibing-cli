@@ -1,0 +1,87 @@
+name: pr-gate-metrics
+version: "1.0"
+description: >
+  Query PR gate (repo-pr-pipeline) metrics for a GitCode project.
+  Returns full raw JSON with all ~60 metrics fields including
+  E2E execution, build, test, and code check durations.
+type: query
+category: metrics
+tags: [pr, gate, metrics, e2e, build, test]
+
+parameters:
+  - name: project_id
+    type: integer
+    required: true
+    description: GitCode project ID
+
+  - name: start_date
+    type: string
+    required: true
+    description: Start date in YYYY-MM-DD format
+
+  - name: end_date
+    type: string
+    required: true
+    description: End date in YYYY-MM-DD format
+
+  - name: sort_field
+    type: string
+    default: "total"
+    description: Sort field
+
+  - name: sort_rule
+    type: string
+    default: "desc"
+    enum: [asc, desc]
+    description: Sort direction
+
+  - name: page
+    type: integer
+    default: 1
+    description: Page number
+    validation:
+      min: 1
+
+  - name: page_size
+    type: integer
+    default: 10
+    description: Results per page
+    validation:
+      min: 1
+      max: 100
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-ops/common/detail
+  headers:
+    Content-Type: application/json
+  body: |
+    {"category":"repo-pr-pipeline","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","pipelineStatus":"","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
+
+output:
+  format: json
+
+ai:
+  prompt_hint: >
+    Use this when users ask about PR gate metrics, PR pipeline efficiency,
+    E2E execution time, build/test durations, or CI gate performance for a project.
+  natural_language:
+    - "show PR gate metrics for project 4 this month"
+    - "PR pipeline E2E durations"
+    - "how long do PR checks take"
+    - "gate metrics for Ascend projects"
+
+examples:
+  - command: |
+      openlibing run pr-gate-metrics \
+        --project-id 4 \
+        --start-date 2026-06-01 \
+        --end-date 2026-06-26
+    description: Query all PR gate metrics for project 4 in June
+  - command: |
+      openlibing run pr-gate-metrics \
+        --project-id 4 \
+        --start-date 2026-05-27 \
+        --end-date 2026-06-26 \
+        --output json
+    description: Get raw JSON for further processing
