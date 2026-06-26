@@ -4,13 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       cookie:
-        description: 'Browser Cookie (full string from DevTools → Request Headers)'
+        description: 'Browser Cookie (full string from DevTools)'
         required: true
-        type: string
       csrf_token:
         description: 'CSRF Token (Csrf-Token-Open-Li-Bing header value)'
         required: true
-        type: string
 
 jobs:
   refresh:
