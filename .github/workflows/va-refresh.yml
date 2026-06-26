@@ -1,11 +1,16 @@
 name: Refresh Version Availability Report
 
 on:
-  schedule:
-    # Daily at 00:00 UTC (08:00 Beijing time)
-    - cron: '0 0 * * *'
   workflow_dispatch:
-    # Manual trigger from GitHub UI
+    inputs:
+      cookie:
+        description: 'Browser Cookie (full string from DevTools → Request Headers)'
+        required: true
+        type: string
+      csrf_token:
+        description: 'CSRF Token (Csrf-Token-Open-Li-Bing header value)'
+        required: true
+        type: string
 
 jobs:
   refresh:
@@ -21,6 +26,6 @@ jobs:
 
       - name: Refresh Report
         env:
-          OPENLIBING_COOKIE: ${{ secrets.OPENLIBING_COOKIE }}
-          OPENLIBING_CSRF_TOKEN: ${{ secrets.OPENLIBING_CSRF_TOKEN }}
+          OPENLIBING_COOKIE: ${{ inputs.cookie }}
+          OPENLIBING_CSRF_TOKEN: ${{ inputs.csrf_token }}
         run: bash scripts/va-refresh-ci.sh
