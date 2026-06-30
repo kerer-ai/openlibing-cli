@@ -122,6 +122,44 @@ lark-cli sheets +csv-put \
 
 Report: matched count, missing entries, and the written range.
 
+### Step 7: Check thresholds and highlight violations
+
+After writing, check product-specific thresholds and mark violating cells
+with a yellow background (`#FFF2CC`). First, build a reverse column map
+(`{field: col_letter}`) from the header map (Step 2). Then run:
+
+```bash
+python3 scripts/highlight.py \
+  --data /tmp/pr-gate-data.json \
+  --col-map '<the column map from Step 2 as JSON>' \
+  --output /tmp/highlight.sh
+```
+
+The `--col-map` must be the exact `{col_letter: field_name}` mapping
+produced in Step 2 (e.g. `{"C":"e2e_p50","D":"e2e_p90",...}`).
+Pass it as a JSON string.
+
+Then execute the generated script to apply highlighting:
+
+```bash
+bash /tmp/highlight.sh
+```
+
+If the script reports "No threshold violations found", skip this step.
+
+## Threshold rules
+
+| Product | 构建任务平均(min) | 门禁E2E执行平均(min)(不含重试) |
+|---------|:----------------:|:---------------------------:|
+| MindIE | < 10 | < 30 |
+| FrameworkPTAdapter | < 20 | < 60 |
+| Ascend-CANN | < 10 | < 30 |
+| MindSpeed | < 10 | < 60 |
+| Others (MindCluster, MindSpore, MindStudio) | < 10 | < 30 |
+
+Values equal to or exceeding the threshold get yellow highlighting.
+Missing/null values (`"-"`) are skipped and never highlighted.
+
 ## Fixed reference
 
 | Setting | Value |
