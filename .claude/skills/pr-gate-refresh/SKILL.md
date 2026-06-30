@@ -125,14 +125,19 @@ Report: matched count, missing entries, and the written range.
 ### Step 7: Highlight empty cells and threshold violations
 
 After writing, apply color highlighting:
-- **Gray** (`#D9D9D9`): cells with no data (`"-"`)
+- **Gray** (`#D9D9D9`): cells with no data (`"/"`)
 - **Yellow** (`#FFF2CC`): cells exceeding product thresholds (overrides gray)
 
-Run the highlight script with the column map from Step 2:
+First save the A/B column data from Step 3 to a file. Then run the highlight
+script with the A/B CSV to ensure row alignment:
 
 ```bash
+# Save A/B CSV from Step 3 response
+echo '<A/B CSV from step 3>' > /tmp/ab.csv
+
 python3 scripts/highlight.py \
   --data /tmp/pr-gate-data.json \
+  --ab-csv /tmp/ab.csv \
   --col-map '<column map from Step 2 as JSON>' \
   --output /tmp/highlight.sh
 
