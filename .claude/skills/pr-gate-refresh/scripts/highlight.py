@@ -53,13 +53,14 @@ def find_violations(data, col_map):
         product = record.get("product", "")
         row = DATA_START_ROW + i
         rules = THRESHOLDS.get(product, THRESHOLDS["_default"])
-        for field, col in [(e2e_col, "e2e_avg"), (build_col, "build_avg")]:
-            if col is None:
-                continue
-            key = {"e2e_avg": "e2e_avg", "build_avg": "build_avg"}[field] if field in ("e2e_avg","build_avg") else field
-            val = _parse_val(record.get(key))
-            if val is not None and val > rules[key]:
-                violations.append((row, col))
+        if e2e_col is not None:
+            val = _parse_val(record.get("e2e_avg"))
+            if val is not None and val >= rules["e2e_avg"]:
+                violations.append((row, e2e_col))
+        if build_col is not None:
+            val = _parse_val(record.get("build_avg"))
+            if val is not None and val >= rules["build_avg"]:
+                violations.append((row, build_col))
     return violations
 
 
@@ -114,7 +115,21 @@ def main():
     yellow_set = set(violations)
     empty = [e for e in empty if e not in yellow_set]
 
+    # Determine data range from col_map
+    data_cols = [c for c in col_map.keys() if c not in ("A", "B")]
+    start_col = min(data_cols)
+    end_col = max(data_cols)
+    data_range = f"{start_col}{DATA_START_ROW}:{end_col}200"
+
     cmds = ["#!/bin/bash", "# Auto-generated highlight commands"]
+    # Clear ALL background colors first (prevents stale colors from prior runs)
+    cmds.append(
+        f"lark-cli sheets +cells-clear"
+        f" --spreadsheet-token {SPREADSHEET_TOKEN}"
+        f" --sheet-id {SHEET_ID}"
+        f" --range {data_range}"
+        f" --scope formats --as user --yes"
+    )
     cmds += build_script(empty, GRAY, "empty cells (no data)")
     cmds += build_script(violations, YELLOW, "threshold violations")
 
