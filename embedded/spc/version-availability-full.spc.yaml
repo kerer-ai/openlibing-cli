@@ -1,0 +1,90 @@
+name: version-availability-full
+version: "1.0"
+description: >
+  Query nightly pipeline version availability metrics with ALL fields.
+  Returns full raw JSON with all API fields.
+type: query
+category: ops
+tags: [version, availability, nightly, metrics, full]
+
+parameters:
+  - name: project_id
+    type: integer
+    required: false
+    default: ""
+    description: GitCode project ID (omit to query all projects)
+
+  - name: start_date
+    type: string
+    required: true
+    description: Start date in YYYY-MM-DD format
+
+  - name: end_date
+    type: string
+    required: true
+    description: End date in YYYY-MM-DD format
+
+  - name: category
+    type: string
+    default: "nightly-dashboard"
+    description: Dashboard category
+
+  - name: open_source
+    type: string
+    default: "lead"
+    description: Open source filter
+
+  - name: is_all_day
+    type: string
+    default: "0"
+    description: All-day filter
+
+  - name: sort_field
+    type: string
+    default: "pipelineRunCount"
+    description: Sort field
+
+  - name: sort_rule
+    type: string
+    default: "desc"
+    enum: [asc, desc]
+    description: Sort direction
+
+  - name: page
+    type: integer
+    default: 1
+    description: Page number
+
+  - name: page_size
+    type: integer
+    default: 10
+    description: Results per page
+    validation:
+      min: 1
+      max: 100
+
+source:
+  method: POST
+  endpoint: gateway/openlibing-ops/manage/common/detail
+  headers:
+    Content-Type: application/json
+  body: |
+    {"category":"{{.category}}","openSource":"{{.open_source}}","startDate":"{{.start_date}}","endDate":"{{.end_date}}","isAllDay":"{{.is_all_day}}","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}{{if .project_id}},"projectId":{{.project_id}}{{end}}}
+
+output:
+  format: json
+
+ai:
+  prompt_hint: >
+    Use when users need ALL version availability fields (not just the curated subset).
+  natural_language:
+    - "full version availability data"
+    - "all VA metrics"
+
+examples:
+  - command: |
+      openlibing run version-availability-full \
+        --start-date 2026-06-12 \
+        --end-date 2026-06-30 \
+        --page-size 100
+    description: Query all projects with all fields
