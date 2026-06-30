@@ -32,7 +32,7 @@ DATA_START_ROW = 3
 
 
 def _parse_val(v):
-    if v is None or v == "" or v == "-":
+    if v is None or v == "" or v == "-" or v == "/":
         return None
     try:
         return float(v)
@@ -73,7 +73,7 @@ def find_empty(data, col_map):
             if col in ("A", "B"):
                 continue  # skip identity columns
             v = record.get(field)
-            if v is None or v == "" or v == "-":
+            if v is None or v == "" or v == "-" or v == "/":
                 empty.append((row, col))
     return empty
 

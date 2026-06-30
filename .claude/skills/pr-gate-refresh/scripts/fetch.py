@@ -46,9 +46,9 @@ def find_openlibing():
 
 
 def fmt(v):
-    """Format a metric value: None/empty/dash -> '-', otherwise 1 decimal."""
+    """Format a metric value: None/empty/dash -> '/', otherwise 1 decimal."""
     if v is None or v == "" or v == "-":
-        return "-"
+        return "/"
     try:
         fv = float(v)
         return "0.0" if fv == 0.0 else f"{fv:.1f}"
