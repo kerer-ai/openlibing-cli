@@ -122,30 +122,22 @@ lark-cli sheets +csv-put \
 
 Report: matched count, missing entries, and the written range.
 
-### Step 7: Check thresholds and highlight violations
+### Step 7: Highlight empty cells and threshold violations
 
-After writing, check product-specific thresholds and mark violating cells
-with a yellow background (`#FFF2CC`). First, build a reverse column map
-(`{field: col_letter}`) from the header map (Step 2). Then run:
+After writing, apply color highlighting:
+- **Gray** (`#D9D9D9`): cells with no data (`"-"`)
+- **Yellow** (`#FFF2CC`): cells exceeding product thresholds (overrides gray)
+
+Run the highlight script with the column map from Step 2:
 
 ```bash
 python3 scripts/highlight.py \
   --data /tmp/pr-gate-data.json \
-  --col-map '<the column map from Step 2 as JSON>' \
+  --col-map '<column map from Step 2 as JSON>' \
   --output /tmp/highlight.sh
-```
 
-The `--col-map` must be the exact `{col_letter: field_name}` mapping
-produced in Step 2 (e.g. `{"C":"e2e_p50","D":"e2e_p90",...}`).
-Pass it as a JSON string.
-
-Then execute the generated script to apply highlighting:
-
-```bash
 bash /tmp/highlight.sh
 ```
-
-If the script reports "No threshold violations found", skip this step.
 
 ## Threshold rules
 
@@ -157,8 +149,9 @@ If the script reports "No threshold violations found", skip this step.
 | MindSpeed | < 10 | < 60 |
 | Others (MindCluster, MindSpore, MindStudio) | < 10 | < 30 |
 
-Values equal to or exceeding the threshold get yellow highlighting.
-Missing/null values (`"-"`) are skipped and never highlighted.
+Values at or above the threshold → **yellow** (`#FFF2CC`).  
+Cells with no data (`"-"`) → **gray** (`#D9D9D9`).  
+Yellow takes precedence over gray when both conditions apply.
 
 ## Fixed reference
 
