@@ -35,9 +35,9 @@ Field mapping:
 |---|--------|----------|-------------|
 | 1 | Repo | `repoName` | 仓库名 |
 | 2 | Branch | `branchName` | 分支 |
-| 3 | E2E P90(min) | `prE2eAvgTimeP90` | 门禁E2E执行(不含重试) P90 |
-| 4 | E2E Avg(min) | `prE2eAvgTime` | 门禁E2E执行(不含重试) 平均 |
-| 5 | E2E P50(min) | `prE2eAvgTimeP50` | 门禁E2E执行(不含重试) P50 |
+| 3 | 门禁E2E执行P90(min)(不含重试) | `efficiencyAvgTimeP90` | 门禁E2E执行(不含重试) P90 |
+| 4 | 门禁E2E执行平均(min)(不含重试) | `efficiencyAvgTime` | 门禁E2E执行(不含重试) 平均 |
+| 5 | P50门禁E2E执行(min)(不含重试) | `efficiencyAvgTimeP50` | 门禁E2E执行(不含重试) P50 |
 | 6 | Build P50(min) | `buildAvgTimeP50` | 构建任务 P50 |
 | 7 | Build P90(min) | `buildAvgTimeP90` | 构建任务 P90 |
 | 8 | Build Avg(min) | `buildAvgTime` | 构建任务 平均 |
@@ -85,7 +85,7 @@ No Go source changes. Zero code impact.
 
 1. **Source duplication over inheritance**: SPC 模型当前不支持 `extends`/`$ref`。复制 source 保持现有模式，且 2 个文件的维护成本极低。
 2. **No runtime field selection**: 不扩展 `--fields` 参数。通过不同 SPC 提供不同的字段组合，符合 CLI 的子命令语义。
-3. **API values are already in minutes**: 原始数据中 `prE2eAvgTimeP90` 等字段数值单位已是分钟级，无需 transform 转换。
+3. **API values are already in minutes**: 原始数据中 `efficiencyAvgTimeP90` 等字段数值单位已是分钟级，无需 transform 转换。
 
 ## Testing
 

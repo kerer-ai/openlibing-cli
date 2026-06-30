@@ -70,16 +70,16 @@ output:
       path: "branchName"
       width: 12
     - name: e2e_p90
-      header: "E2E P90(min)"
-      path: "prE2eAvgTimeP90"
+      header: "门禁E2E执行P90(min)(不含重试)"
+      path: "efficiencyAvgTimeP90"
       transform: truncate:8
     - name: e2e_avg
-      header: "E2E Avg(min)"
-      path: "prE2eAvgTime"
+      header: "门禁E2E执行平均(min)(不含重试)"
+      path: "efficiencyAvgTime"
       transform: truncate:8
     - name: e2e_p50
-      header: "E2E P50(min)"
-      path: "prE2eAvgTimeP50"
+      header: "P50门禁E2E执行(min)(不含重试)"
+      path: "efficiencyAvgTimeP50"
       transform: truncate:8
     - name: build_p50
       header: "Build P50(min)"
