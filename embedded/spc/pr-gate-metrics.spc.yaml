@@ -56,7 +56,7 @@ source:
   headers:
     Content-Type: application/json
   body: |
-    {"category":"repo-pr-pipeline","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","pipelineStatus":"","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
+    {"category":"repo-pr-pipeline","projectId":{{.project_id}},"startDate":"{{.start_date}}","endDate":"{{.end_date}}","pipelineStatus":"true","sortField":"{{.sort_field}}","sortRule":"{{.sort_rule}}","page":{{.page}},"pageSize":{{.page_size}}}
 
 output:
   format: json
