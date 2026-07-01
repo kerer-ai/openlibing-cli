@@ -30,6 +30,13 @@ PROJECT_META = {
 }
 
 KEEP_PROJECTS = {4, 300030, 300036, 300037, 300038, 300057, 300091}
+
+# Pipelines to exclude from tracking (e.g. code-scan, staging, non-release)
+EXCLUDED_PIPELINES = {
+    "Nightly-CI_hccl-uat",
+    "Nightly-CI_Triton",
+    "Nightly-CI_CodeQL-scan_MindIE_dev",
+}
 BASE_URL = "https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId="
 
 # ── Helpers ───────────────────────────────────────────────────────
@@ -89,7 +96,7 @@ def main():
         path = f"{args.data_dir}/va_{d.replace('-','')}.json"
         try:
             records = json.load(open(path))
-            records = [r for r in records if r["project_id"] in KEEP_PROJECTS]
+            records = [r for r in records if r["project_id"] in KEEP_PROJECTS and r["pipeline_name"] not in EXCLUDED_PIPELINES]
             all_data[d] = records
         except (FileNotFoundError, json.JSONDecodeError):
             all_data[d] = []

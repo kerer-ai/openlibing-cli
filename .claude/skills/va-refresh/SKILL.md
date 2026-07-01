@@ -53,3 +53,13 @@ python3 scripts/va-gen-report.py --days 7 --output docs/version-availability-tra
 FrameworkPTAdapter, MindSpore, MindIE, MindStudio, MindCluster, Ascend-CANN, MindSpeed。
 
 修改过滤列表编辑 `scripts/va-gen-report.py` 中的 `KEEP_PROJECTS` 变量。
+
+## 流水线排除
+
+以下流水线不参与跟踪（定义在 `scripts/va-gen-report.py` 的 `EXCLUDED_PIPELINES`）：
+
+- `Nightly-CI_hccl-uat` — 内部 UAT 环境，非正式版本
+- `Nightly-CI_Triton` — Triton 专项流水线，独立跟踪
+- `Nightly-CI_CodeQL-scan_MindIE_dev` — 代码扫描，非构建流水线
+
+修改排除列表编辑 `scripts/va-gen-report.py` 中的 `EXCLUDED_PIPELINES` 变量。

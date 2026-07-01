@@ -1,6 +1,6 @@
 # 版本可用度日跟踪报告
 
-> 统计周期: 06-25(四) ~ 07-01(三) | 共 38 条流水线
+> 统计周期: 06-25(四) ~ 07-01(三) | 共 37 条流水线
 
 ## 按项目汇总
 
@@ -8,7 +8,7 @@
 |------|----------|----------|---|---|---|---|---|---|---|----------|------|
 | [FrameworkPTAdapter](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=4) | Ascend | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 1 | 0 | 📈 上升 |
 | [MindSpore](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300030) | MindSpore | 1 | 1 | 0 | 1 | 1 | 0 | 1 | 1 | 0 | ➡️ 持平 |
-| [MindIE](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300036) | Ascend | 5 | 2 | 2 | 2 | 1 | 3 | 3 | 3 | 0 | 📈 上升 |
+| [MindIE](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300036) | Ascend | 4 | 2 | 2 | 2 | 1 | 3 | 3 | 3 | 0 | 📈 上升 |
 | [MindStudio](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300037) | Ascend | 6 | 0 | 1 | 0 | 0 | 2 | 4 | 3 | 0 | 📈 上升 |
 | [MindCluster](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300038) | Ascend | 8 | 8 | 8 | 8 | 5 | 8 | 8 | 6 | 5 | 📉 下降 |
 | [Ascend-CANN](https://www.openlibing.com/apps/nightlyPipelineDashboard?projectId=300057) | CANN | 11 | 3 | 6 | 5 | 4 | 8 | 11 | 9 | 1 | 📈 上升 |
@@ -39,7 +39,6 @@
 | MindCluster | Nightly-CI_VisionSDK | Ascend | **100%** | **100%** | **100%** | **100%** | **100%** | **100%** | **100%** | 🟢 持续100% |
 | MindCluster | Nightly-CI_ascend-deployer | Ascend | **100%** | **100%** | **100%** | <span style="color:red">0%</span> | **100%** | **100%** | - | 🟡 波动(有100%) |
 | MindIE | Nightly-CI_ATB-Models | Ascend | **100%** | **100%** | **100%** | - | **100%** | **100%** | **100%** | 🟢 持续100% |
-| MindIE | Nightly-CI_CodeQL-scan_MindIE_dev | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
 | MindIE | Nightly-CI_MindIE-LLM | Ascend | **100%** | **100%** | **100%** | - | **100%** | **100%** | **100%** | 🟢 持续100% |
 | MindIE | Nightly-CI_MindIE-Motor | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | - | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | 🔴 持续0% |
 | MindIE | Nightly-CI_MindIE-SD | Ascend | <span style="color:red">0%</span> | <span style="color:red">0%</span> | <span style="color:red">0%</span> | **100%** | **100%** | **100%** | **100%** | 📈 新达标 |
@@ -59,4 +58,4 @@
 
 ---
 
-> 生成时间: 2026-07-01 16:43:49 | 数据源: openlibing-ops API
+> 生成时间: 2026-07-01 16:48:09 | 数据源: openlibing-ops API
